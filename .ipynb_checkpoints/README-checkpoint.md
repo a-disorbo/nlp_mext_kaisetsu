@@ -1,0 +1,41 @@
+# Kaisetsu Corpus Analysis
+
+Corpus-based analysis of Japanese elementary school foreign language curriculum guidelines (*kaisetsu*) across the 2008 and 2017 revisions. Compares terminology, discourse focus, and pedagogical framing between the activity-based (外国語活動) and subject-based (外国語科) documents using computational text analysis.
+
+## Corpora
+
+| File | Year | Type | Grade |
+|------|------|------|-------|
+| `kaisetsu_2008_fla.pdf` | 2008 | Activity | 5–6 |
+| `kaisetsu_2017_fla.pdf` | 2017 | Activity | 3–4 |
+| `kaisetsu_2017_fls.pdf` | 2017 | Subject | 5–6 |
+
+> All PDFs are publicly available MEXT publications and are included in this repository.
+
+## Methods
+
+- **Text extraction** — `pdfplumber`, with manual section tagging (総説 vs. pedagogical)
+- **Tokenization** — `SudachiPy` (split mode C), lemma-based, nouns and verbs retained
+- **Frequency analysis** — form-related and meaning-related term lists, normalized per 1,000 content words
+- **Collocation analysis** — window-based (±3 tokens), bigram-aware for compound terms
+- **Keyness analysis** — log-likelihood scoring across corpus pairs
+
+## Setup
+
+```bash
+pip install pdfplumber pymupdf
+pip install pandas numpy scipy statsmodels openpyxl
+pip install matplotlib seaborn japanize-matplotlib
+pip install ginza ja-ginza sudachipy sudachidict-core
+pip install scikit-learn bertopic umap-learn hdbscan
+```
+
+Then run the notebook top to bottom. Outputs saved to:
+- `kaisetsu_corpus.csv` — tokenized dataframe
+- `frequency_results.csv` — term frequency table
+- `keyness_results.json` — log-likelihood scores across corpus pairs
+- `freq_by_corpus.png` — frequency bar chart
+
+## Notes
+
+SudachiPy splits some compound terms (e.g. 言語活動 → 言語 + 活動). The collocation functions handle this with bigram-aware matching — see the `get_collocates_universal` function.
