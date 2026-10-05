@@ -46,3 +46,7 @@ SudachiPy splits some compound terms (e.g. 言語活動 → 言語 + 活動). Th
 This repository supports the following preprint:
 
 DiSorbo, A. (2026). Natural Language Processing Analysis of Form-Focused Specification in MEXT Kaisetsu Documents. *EdArXiv*. https://osf.io/preprints/edarxiv/24sz9_v1
+
+## Author
+Anthony DiSorbo — Data Analyst, Greater Tokyo
+[LinkedIn](https://www.linkedin.com/in/adisorbo/) · [GitHub](https://github.com/adisorbo)
